@@ -1,0 +1,54 @@
+#activity selection problem
+class Activity:
+    def __init__(self,name,start,finish):
+        self.name=name
+        self.start=start
+        self.finish=finish
+
+class ActivitySelection:
+    def __init__(self,activities):
+        self.activities=sorted(activities,key= lambda x:x.finish)
+        self.selection=[]
+        self.no_of_activities=len(self.activities)
+
+    def addSequence(self,sequence):
+        curr_len = len(sequence)
+        if len(self.selection)==0:
+            self.selection.append(sequence)
+        for x in self.selection:
+            if curr_len < len(x):
+                pass
+            else:
+                self.selection.remove(x)
+                if sequence not in self.selection:
+                    self.selection.append(sequence)
+                else:
+                    pass
+        return self.selection
+
+    def ActivitySelectionAlgo(self):
+        for i in range(self.no_of_activities):
+            sequence=[]
+            start_activity=self.activities[i]
+            sequence.append(start_activity)
+            for j in self.activities:
+                if sequence[-1].finish<j.start:
+                    sequence.append(j)
+            self.addSequence(sequence)
+        result=[]
+        for x in self.selection[0]:
+            result.append(x.name)
+        return result
+
+
+
+A1=Activity('a1',0,6)
+A2=Activity('a2',3,4)
+A3=Activity('a3',1,2)
+A4=Activity('a4',5,8)
+A5=Activity('a5',5,7)
+A6=Activity('a6',8,9)
+activities=[A1,A2,A3,A4,A5,A6]
+
+custom_project=ActivitySelection(activities)
+print(custom_project.ActivitySelectionAlgo())
