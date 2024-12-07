@@ -1,0 +1,11 @@
+def coinChange(denominations,sum):
+    denominations.sort()
+    denominations.reverse()
+    combination={}
+    for x in denominations:
+        if int(sum/x)>=1:
+            combination[x]=int(sum/x)
+            sum=(sum-int(combination[x]*x))
+    return combination
+
+print(coinChange([1,2,5,10,20,50,100,1000],2035))
