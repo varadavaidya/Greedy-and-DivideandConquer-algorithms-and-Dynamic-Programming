@@ -1,0 +1,30 @@
+class Item:
+    def __init__(self,name,weight,value):
+        self.name=name
+        self.weight=weight
+        self.value=value
+        self.ratio=self.value/self.weight
+
+def Knapsack(items,max_weight):
+    items.sort(key=lambda x:x.ratio)
+    items.reverse()
+    weight_limit=True
+    while weight_limit:
+        for x in items:
+            if max_weight>0:
+                if x.weight>=max_weight:
+                    print(f"{max_weight} of {x.name}")
+                    weight_limit=False
+                else:
+                    print(f"{x.weight} of {x.name}")
+                max_weight = max_weight - x.weight
+
+
+
+a=Item('gold',10,1000)
+b=Item('silver',20,500)
+c=Item('Iron',50,250)
+d=Item('plastic',100,200)
+
+items=[a,b,c,d]
+print(Knapsack(items,75))
