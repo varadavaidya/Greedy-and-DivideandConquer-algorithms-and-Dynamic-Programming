@@ -1,0 +1,23 @@
+class Item:
+    def __init__(self,name,weight,profit):
+        self.name=name
+        self.weight=weight
+        self.profit=profit
+        self.ratio=self.profit/self.weight
+
+def ZeroOneKnapsack(items,capacity,currentIndex):
+    if capacity<=0 or currentIndex<0 or currentIndex>=len(items):
+        return 0
+    elif capacity-items[currentIndex].weight>=0:
+        option1=items[currentIndex].profit+ZeroOneKnapsack(items,capacity-items[currentIndex].weight,currentIndex+1)
+        option2=ZeroOneKnapsack(items,capacity,currentIndex+1)
+        return max(option1,option2)
+    else:
+        return 0
+
+item1=Item('Mango',3,31)
+item2=Item('Apple',1,26)
+item3=Item('Orange',2,17)
+item4=Item('Banana',5,72)
+items=[item1,item2,item3,item4]
+print(ZeroOneKnapsack(items,7,0))
