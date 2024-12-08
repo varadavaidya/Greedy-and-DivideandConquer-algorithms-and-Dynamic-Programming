@@ -1,0 +1,9 @@
+def houseRobber(houses,current_house):
+    if current_house>=len(houses):
+        return 0
+    else:
+        robFirstHouse=houses[current_house]+houseRobber(houses,current_house+2)
+        skipFirstHouse=houseRobber(houses,current_house+1)
+        return max(robFirstHouse,skipFirstHouse)
+
+print(houseRobber([6,7,1,30,8,2,4],0))
