@@ -1,0 +1,25 @@
+
+def findNumberOfPaths(Two_D_Array,row,col,total_cost):
+    if total_cost<0:
+        return 0
+    elif row==0 and col==0:
+        if Two_D_Array[0][0]-total_cost==0:
+            return 1
+        else:
+            return 0
+    elif row==0:
+        return findNumberOfPaths(Two_D_Array,0,col-1,total_cost-Two_D_Array[row][col])
+    elif col==0:
+        return findNumberOfPaths(Two_D_Array,row-1,0,total_cost-Two_D_Array[row][col])
+    else:
+        option1=findNumberOfPaths(Two_D_Array,row-1,col,total_cost-Two_D_Array[row][col])
+        option2=findNumberOfPaths(Two_D_Array,row,col-1,total_cost-Two_D_Array[row][col])
+        return option1+option2
+
+
+
+Two_D_Array1=[[4,7,1,6],
+              [5,7,3,9],
+              [3,2,1,2],
+              [7,1,6,3]]
+print(findNumberOfPaths(Two_D_Array1,3,3,25))
