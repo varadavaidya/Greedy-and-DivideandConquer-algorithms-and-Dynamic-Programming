@@ -1,0 +1,14 @@
+def numberFactor(N):
+    if N==1 or N==0 or N==2:
+        return 1
+    elif N==3:
+        return 2
+    else:
+        return numberFactor(N-1)+numberFactor(N-3)+numberFactor(N-4)
+
+
+print(numberFactor(1))
+print(numberFactor(2))
+print(numberFactor(3))
+print(numberFactor(4))
+print(numberFactor(5))
