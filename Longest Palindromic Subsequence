@@ -1,0 +1,14 @@
+
+def findLPS(str,startIndex,endIndex):
+    if startIndex>endIndex:
+        return 0
+    elif startIndex==endIndex:
+        return 1
+    elif str[startIndex]==str[endIndex]:
+        return 2+findLPS(str,startIndex+1,endIndex-1)
+    else:
+        option1=findLPS(str,startIndex+1,endIndex)
+        option2=findLPS(str,startIndex,endIndex-1)
+        return max(option1,option2)
+
+'''print(findLPS('ELRMENMET',0,8))''' #because palindrome is "EMEME"
