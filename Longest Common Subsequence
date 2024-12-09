@@ -4,7 +4,7 @@ def LCS(s1,s2,index1,index2):
     elif s1[index1]==s2[index2]:
         res=f"{s1[index1]}"+str(LCS(S1,S2,index1+1,index2+1))
         return res
-    else:
+    else:#
         option1=LCS(s1,s2,index1+1,index2)
         option2=LCS(s1,s2,index1,index2+1)
         if len(option2)>=len(option1):
