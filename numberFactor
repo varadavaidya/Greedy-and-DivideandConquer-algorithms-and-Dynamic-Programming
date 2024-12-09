@@ -1,0 +1,21 @@
+def numberFactor(n):
+    tb=[1,1,1,2]
+    for i in range(len(tb),n+1):
+        tb.append(tb[i-1]+tb[i-3]+tb[i-4])
+    return tb[n]
+
+print(numberFactor(5))
+
+def numberFactor(n,memo):
+    for i in (0,1,2):
+        if i not in memo:
+            memo[i]=1
+    memo[3]=2
+    for x in range(n+1):
+        if x not in memo:
+            memo[x]=memo[x-1]+memo[x-3]+memo[x-4]
+    return memo[n]
+
+memo={}
+print(numberFactor(5,memo))
+
