@@ -1,0 +1,12 @@
+def LCS(s1,s2,index1,index2):
+    if index1>=len(s1) or index2>=len(s2):
+        return ''
+    elif s1[index1]==s2[index2]:
+        res=f"{s1[index1]}"+str(LCS(S1,S2,index1+1,index2+1))
+        return res
+    else:
+        option1=LCS(s1,s2,index1+1,index2)
+        option2=LCS(s1,s2,index1,index2+1)
+        if len(option2)>=len(option1):
+            return option2
+        return option1
