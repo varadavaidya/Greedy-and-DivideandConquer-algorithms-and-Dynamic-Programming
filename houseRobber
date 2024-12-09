@@ -1,0 +1,20 @@
+def houseRobber(houses,currentHouse,memo):  #topDown
+    if currentHouse>=len(houses):
+        return 0
+    else:
+        if currentHouse not in memo:
+            stealFirstHouse=houses[currentHouse]+houseRobber(houses,currentHouse+2,memo)
+            skipFirstHouse=houseRobber(houses,currentHouse+1,memo)
+            memo[currentHouse]=max(stealFirstHouse,skipFirstHouse)
+        return memo[currentHouse]
+
+
+def houseRobberBU(houses):  #bottomUp
+    tb=[0]*(len(houses)+2)
+    for i in range(len(houses)-1,-1,-1):
+        tb[i]=max(houses[i]+tb[i+2],tb[i+1])
+    return tb[0]
+
+memo={}
+print(houseRobber([6,7,1,30,8,2,4],0,memo))
+print(houseRobberBU([6,7,1,30,8,2,4]))
