@@ -1,0 +1,11 @@
+def LRSLength(X, m, n):
+    if m==0 or n==0:
+        return 0
+    elif X[m-1]==X[n-1] and m!=n:
+        return 1+LRSLength(X,m-1,n-1)
+    else:
+        option1=LRSLength(X,m,n-1)
+        option2=LRSLength(X,m-1,n)
+        return max(option1,option2)
+
+'''print(LRSLength('ATAKTKGGA',9,9))'''
