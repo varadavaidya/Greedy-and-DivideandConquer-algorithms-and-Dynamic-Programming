@@ -1,0 +1,16 @@
+def isSubsetSum(set, n, sum):
+    if n==1:
+        if sum==set[0]:
+            return True
+        return False
+    if sum<0 :
+        return False
+    elif sum==0 :
+        return True
+    else:
+        option1=isSubsetSum(set,n-1,sum)
+        option2=isSubsetSum(set,n-1,sum-set[n-1])
+        return max(option1,option2)
+
+
+print(isSubsetSum([3, 34, 4, 12, 5, 2],6,30))
