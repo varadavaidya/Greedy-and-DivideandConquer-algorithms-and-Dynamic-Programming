@@ -1,0 +1,62 @@
+class NQueens:
+    def __init__(self,n):
+        self.n=n
+        self.chessTable=[[0 for i in range(n)] for j in range(n)]
+
+    def print_queens(self):
+        for i in range(self.n):
+            for j in range(self.n):
+                if self.chessTable[i][j]==1:
+                    print(" Q ",end='')
+                else:
+                    print(" - ",end='')
+            print("\n")
+
+    def isPlaceSafe(self,rowIndex,colIndex):
+        for i in range(self.n):    #checkHorizontal condition
+            if self.chessTable[rowIndex][i]==1:
+                return False
+        for j in range(self.n):
+            if self.chessTable[j][colIndex]==1:
+                return False
+        #top left to bottom right
+        j=colIndex
+        for i in range(rowIndex,-1,-1):
+            if i<0:
+                break
+            if self.chessTable[i][j]==1:
+                return False
+            j=j-1
+        #top right to bottomleft
+        j=colIndex
+        for i in range(rowIndex,self.n):
+            if i<0:
+                break
+            if self.chessTable[j][i]==1:
+                return False
+            j=j-1
+        return True
+
+    def solve(self,colIndex):
+        if colIndex==self.n:
+            return True
+        for rowIndex in range(self.n):
+            if self.isPlaceSafe(rowIndex,colIndex):
+                self.chessTable[rowIndex][colIndex]=1
+                if self.solve(colIndex+1):
+                    return True
+                self.chessTable[rowIndex][colIndex]=0
+        return False
+
+    def solve_NQueens(self):
+        if self.solve(0):
+            self.print_queens()
+        else:
+            print("There is no solution.")
+
+
+
+queens=NQueens(4)
+queens.solve_NQueens()
+queens=NQueens(3)
+queens.solve_NQueens()
