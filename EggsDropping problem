@@ -1,0 +1,17 @@
+INT_MAX=32767
+def eggDrop(floors,eggs):
+    if floors==1 or floors==0:
+        return floors
+    elif eggs==1:
+        return floors
+    else:
+        min=INT_MAX
+        for x in range(2,floors+1):
+            option1=eggDrop(x-1,eggs-1)
+            option2=eggDrop(floors-x,eggs)
+            res=max(option1,option2)
+            if (res<min):
+                min=res
+        return min+1
+
+print(eggDrop(36,2))
