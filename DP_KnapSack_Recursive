@@ -10,7 +10,7 @@ def knap(items,Cap,val,wts):
             return knap(items-1,Cap,val[:items-1],wts[:items-1])
 
 
-print(knap(3,4,[1,2,3],[4,5,1]))
+print(knap(3,4,[1,2,3],[4,5,1])) 
 
 
 
