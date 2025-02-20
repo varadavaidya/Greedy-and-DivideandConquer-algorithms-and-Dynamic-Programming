@@ -1,0 +1,31 @@
+class Solution:
+
+    def knapSack(self,W,wt,val,N):
+        dp={}
+        def solve(n,cap):
+            if cap==0 or n==0:
+                return 0
+            elif (n,cap) in dp:
+                return dp[(n,cap)]
+            else:
+                current_wt=wt[n-1]
+                current_val=val[n-1]
+                if current_wt<=cap:
+                    option1=current_val+solve(n-1,cap-current_wt)
+                    option2=solve(n-1,cap)
+                    c=max(option1,option2)
+                else:
+                    c=solve(n-1,cap)
+                dp[(n,cap)]=c
+                return c
+        return solve(N,W)
+
+
+
+
+N=3
+W=4
+val=[1,2,3]
+wt=[4,5,1]
+c=Solution()
+print(c.knapSack(W,wt,val,N))
