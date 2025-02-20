@@ -1,0 +1,16 @@
+def knap(items,Cap,val,wts):
+    if Cap==0 or items==0:
+        return 0
+    else:
+        if wts[items-1]<=Cap:
+            option1=val[items-1]+knap(items-1,Cap-wts[items-1],val[:items-1],wts[:items-1])
+            option2=knap(items-1,Cap,val[:items-1],wts[:items-1])
+            return max(option1,option2)
+        else:
+            return knap(items-1,Cap,val[:items-1],wts[:items-1])
+
+
+print(knap(3,4,[1,2,3],[4,5,1]))
+
+
+
