@@ -1,4 +1,4 @@
-def fibo(n):
+def fibo(n): #top-down
     dp=[-1]*(n+1)
     if n==0:
         return 0
@@ -12,3 +12,18 @@ def fibo(n):
 
 
 print(fibo(8))
+
+def fibon(n):   #bottom up
+    dp=[0]*(n+1)
+    if n==0:
+        dp[0]=0
+        return dp[0]
+    elif n==1:
+        dp[1]=1
+        return dp[1]
+    else:
+        for i in range(2,n+1):
+            dp[i]=fibon(i-1)+fibon(i-2)
+        return dp[n]
+
+print(fibon(8))
