@@ -1,0 +1,25 @@
+class Solution:
+    def isSubSetSum(self,N,arr,sum):
+        dp=[[0 for _ in range(sum+1)] for _ in range(N)]
+        def subsetSum(n,sum):
+            for i in range(n):
+                for s in range(sum+1):
+                    item=arr[i]
+                    if i==0:
+                        if s==0 or item==s:
+                            dp[i][s]=1
+                        else:
+                            dp[i][s]=0
+                    else:
+                        if item<=s:
+                            dp[i][s]=dp[i-1][s-item] or dp[i-1][s]
+                        else:
+                            dp[i][s]=dp[i-1][s]
+            return dp[N-1][sum]   #last element of table
+        return subsetSum(N,sum)
+
+N=6
+arr=[3,34,4,12,5,2]
+sum=9
+c=Solution()
+print(c.isSubSetSum(N,arr,sum))
