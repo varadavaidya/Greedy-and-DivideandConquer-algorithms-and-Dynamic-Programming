@@ -1,0 +1,28 @@
+class Solution:
+    def isSubsetSum(self,arr,N,sum):
+        dp={}
+        arr.sort(reverse=True)
+        def subsetSum(n,sum):
+            if sum==0 :
+                return 1
+            elif n==0:
+                return 0
+            elif (n,sum) in dp:
+                return dp[(n,sum)]
+            else:
+                if arr[n-1] <=sum:
+                    option1=subsetSum(n-1,sum-arr[n-1])
+                    option2=subsetSum(n-1,sum)
+                    dp[(n,sum)]=option1 or option2
+                else:
+                    dp[(n,sum)]=0
+                return dp[(n,sum)]
+        return subsetSum(N,sum)
+
+
+
+arr=[3,34,4,12,5,2]
+N=6
+sum=9
+c=Solution()
+print(c.isSubsetSum(arr,N,sum))
