@@ -1,0 +1,26 @@
+class Solution:
+    def equalPartition(self,N,arr):
+        suum = sum(arr)
+        sm = suum / 2
+        dp={}
+        def func(n,sm):
+            if n==0:
+                return 0
+            elif sm==0:
+                return 1
+            elif (n,sm) in dp:
+                return dp[(n,sm)]
+            else:
+                item=arr[n-1]
+                option1=func(n-1,sm-item)
+                option2=func(n-1,sm)
+                dp[(n,sm)]= option1 or option2
+            return dp[(n,sm)]
+        return func(N,sm)
+
+
+
+N=4
+arr=[1,6,15,20]
+c=Solution()
+print(c.equalPartition(N,arr))
