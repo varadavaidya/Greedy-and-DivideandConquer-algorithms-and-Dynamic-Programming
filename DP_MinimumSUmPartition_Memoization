@@ -1,0 +1,31 @@
+class Solution:
+    def minimumSumPartition(self,arr,n):
+        sm=sum(arr)
+        dp={}
+        def solve(n,set1,sm):
+            set2=sm-set1
+            if n==0:
+                return set1-set2
+            elif (n,set1,sm) in dp:
+                return dp[(n,set1,sm)]
+            else:
+                item=arr[n-1]
+                if set1-item>=set2+item:
+                    option1=solve(n-1,set1-item,sm)
+                    option2=solve(n-1,set1,sm)
+                    dp[(n,set1,sm)]= min(option1,option2)
+                else:
+                    dp[(n,set1,sm)]= solve(n-1,set1,sm)
+                return dp[(n,set1,sm)]
+        return solve(n,sum(arr),sm)
+
+
+
+n=4
+arr=[1,6,11,5]
+c=Solution()
+print(c.minimumSumPartition(arr,n))
+N=2
+Arr=[1,4]
+c=Solution()
+print(c.minimumSumPartition(Arr,N))
