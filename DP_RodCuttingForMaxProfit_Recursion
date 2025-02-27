@@ -1,0 +1,21 @@
+class Solution:
+    def rodCutting(self,N,price):
+        n=len(price)
+        def func(n,N):
+            if n==0:
+                return 0
+            else:
+                piece_price=price[n-1]
+                piece_length=n
+                if piece_length<=N:
+                    option1=piece_price+func(n,N-piece_length)
+                    option2=func(n-1,N)
+                    return max(option1,option2)
+                else:
+                    return func(n-1,N)
+        return func(n,N)
+
+c=Solution()
+N=8
+price=[1,5,8,9,10,17,17,20]
+print(c.rodCutting(N,price))
