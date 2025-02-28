@@ -1,0 +1,39 @@
+class Solution:
+    def coinChange(self,arr,sum,N):
+        dp=[[0]*(sum+1) for _ in range(N+1)]
+        def func(n,sum):
+            for i in range(n+1):
+                for j in range(sum+1):
+                    if j == 0:
+                        dp[i][j] = 1
+                    elif i==0:
+                        if j==0:
+                            dp[i][j]= 1
+                        else:
+                            dp[i][j] =0
+                    else:
+                        current_den=arr[i-1]
+                        if current_den<=j:
+                            option1=dp[i][j-current_den]
+                            option2=dp[i-1][j]
+                            dp[i][j]=option1+option2
+                        else:
+                            dp[i][j]=dp[i-1][j]
+            return dp[N][sum]
+        return func(N,sum)
+
+c=Solution()
+N=3
+sum=4
+coins=[1,2,3]
+print(c.coinChange(coins,sum,N))
+c=Solution()
+N=4
+sum=10
+coins=[2,5,3,6]
+print(c.coinChange(coins,sum,N))
+c=Solution()
+N=1
+sum=5
+coins=[4]
+print(c.coinChange(coins,sum,N))
