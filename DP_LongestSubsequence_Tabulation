@@ -1,0 +1,46 @@
+class Solution:
+    def LongestSubsequence(self,str1,str2):
+        n1=len(str1)
+        n2=len(str2)
+        dp=[[0]*(n1) for _ in range(n2)]
+        def func(n1,n2,str1,str2):
+            for i in range(n1):
+                for j in range(n2):
+                    if str1[i]==str2[j]:
+                        dp[i][j]=1+dp[i-1][j-1]
+                    else:
+                        option1=dp[i-1][j]
+                        option2=dp[i][j-1]
+                        dp[i][j]=max(option1,option2)
+            return dp
+        return func(n1,n2,str1,str2)
+
+c=Solution()
+str1='ABCDGH'
+str2='AEDFHR'
+print(c.LongestSubsequence(str1,str2))
+c=Solution()
+str1='ABC'
+str2='AC'
+print(c.LongestSubsequence(str1,str2))
+c=Solution()
+str1='ABC'
+str2='ACD'
+print(c.LongestSubsequence(str1,str2))
+
+c=Solution()
+str1='ABC'
+str2='CBA'
+print(c.LongestSubsequence(str1,str2))
+c=Solution()
+str1='ABC'
+str2='PQR'
+print(c.LongestSubsequence(str1,str2))
+c=Solution()
+str1='varada'
+str2='valaba'
+print(c.LongestSubsequence(str1,str2))
+c=Solution()
+str1='AGGTAB'
+str2='GXTXAYB'
+print(c.LongestSubsequence(str1,str2))
