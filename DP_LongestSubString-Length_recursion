@@ -1,0 +1,20 @@
+class Solution:
+    def LongestCommonSubstring(self,str1,str2,n1,n2):
+        def func(n1,n2):
+            if n1==0 or n2==0:
+                return 0
+            else:
+                if str1[n1-1]==str2[n2-1]:
+                    option1= 1+func(n1-1,n2-1)
+                    option2=func(n1-1,n2-1)
+                    return max(option1,option2)
+                else:
+                    return func(n1-1,n2-1)
+        return func(n1,n2)
+
+c=Solution()
+s1='ABCDGH'
+n1=6
+n2=5
+s2='ACDGHR'
+print(c.LongestCommonSubstring(s1,s2,n1,n2))
