@@ -1,0 +1,36 @@
+class Solution:
+    def longestCommonSubsequence(self,str1,str2,n1,n2):
+        def func(n1,n2):
+            if n1==0 or n2==0:
+                return ''
+            else:
+                if str1[n1-1]==str2[n2-1]:
+                    return str1[n1-1]+func(n1-1,n2-1)
+                else:
+                    option1=func(n1-1,n2)
+                    option2=func(n1,n2-1)
+                    return option1 if len(option1)>len(option2) else option2
+        return func(n1,n2)
+
+c=Solution()
+str1='ABCDGH'
+str2='AEDFHR'
+n1=6
+n2=6
+print(c.longestCommonSubsequence(str1,str2,n1,n2))
+c=Solution()
+str1='ABC'
+str2='AC'
+n1=3
+n2=2
+print(c.longestCommonSubsequence(str1,str2,n1,n2))
+c=Solution()
+str1='ABC'
+str2='ACD'
+n1=3
+n2=3
+print(c.longestCommonSubsequence(str1,str2,n1,n2))
+c=Solution()
+str1='AGGTAB'
+str2='GXTXAYB'
+print(c.longestCommonSubsequence(str1,str2,6,7))
