@@ -1,0 +1,26 @@
+class Solution:
+    def LongestPalindromicSubsequence(self,str):
+        N=len(str)
+        str_rev=str[::-1]
+        def func(n1,n2):
+            if n1==0 or n2==0:
+                return 0
+            else:
+                if str[n1-1]==str_rev[n2-1]:
+                    option1= 1 +func(n1-1,n2-1)
+                    option2=func(n1-1,n2)
+                    option3 = func(n1 , n2-1)
+                    return max(option1,option2,option3)
+                else:
+                    option4= func(n1-1,n2)
+                    option5 = func(n1 , n2-1)
+                    return max(option5,option4)
+        return func(N,N)
+
+str='bbabcbcab'
+c=Solution()
+print(c.LongestPalindromicSubsequence(str))
+
+str='abcd'
+c=Solution()
+print(c.LongestPalindromicSubsequence(str))
