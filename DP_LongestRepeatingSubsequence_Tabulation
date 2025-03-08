@@ -1,0 +1,24 @@
+class Solution:
+    def LongestRepeatingSubsequence(self,str):
+        N=len(str)
+        dp=[[0]*(N+1) for _ in range(N+1)]
+        def func(n1,n2):
+            for i in range(1,N+1):
+                for j in range(1,N+1):
+                    if str[i-1]==str[j-1] and i!=j:
+                        dp[i][j]=1+dp[i-1][j-1]
+                    else:
+                        option1=dp[i-1][j]
+                        option2=dp[i][j-1]
+                        dp[i][j]=max(option1,option2)
+            return dp[n1][n2]
+
+        return func(N,N)
+
+st='abba'
+c=Solution()
+print(c.LongestRepeatingSubsequence(st))
+
+st='axxzxy'
+c=Solution()
+print(c.LongestRepeatingSubsequence(st))
