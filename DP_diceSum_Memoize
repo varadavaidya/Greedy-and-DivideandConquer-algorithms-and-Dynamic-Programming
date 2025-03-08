@@ -1,0 +1,23 @@
+class Solution:
+    def DiceThrowSum(self,dices,faces,x):
+        d=dices
+        m=faces
+        dp={}
+        def func(d,m,x):
+            if d==0 and x==0:
+                return 1
+            if d==0 or x<0 :
+                return 0
+            elif (d,m,x) in dp:
+                return dp[(d,m,x)]
+            ans=0
+            for i in range(1,m+1):
+                ans+=func(d-1,m,x-i)
+            dp[(d, m, x)]=ans
+            return dp[(d,m,x)]
+        return func(d,m,x)
+dices=3
+faces=6
+c=Solution()
+x=8
+print(c.DiceThrowSum(dices,faces,x))
