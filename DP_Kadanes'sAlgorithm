@@ -1,0 +1,16 @@
+class Solution:
+    def maxSubArray(self,arr,N):
+        n=len(arr)
+        temp=arr[0]
+        mx=arr[0]
+        for i in range(1,n):
+            c1=arr[i]
+            c2=temp+arr[i]
+            temp=max(c1,c2)
+            mx=max(mx,temp)
+        return mx
+
+arr=[-2,1,-3,4,-1,2,1,-5,4]
+c=Solution()
+print(c.maxSubArray(arr,len(arr)))
+
